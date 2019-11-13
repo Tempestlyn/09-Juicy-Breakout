@@ -1,17 +1,52 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/Ball.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/lightning1.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/lightning2.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/lightning3.png" type="Texture" id=4]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.0
 bounce = 1.0
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="Curve" id=2]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0.0231099, -354.816 ), 0.0, 0.0, 0, 0, Vector2( 0.945516, -354.816 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+emission_shape = 2
+emission_box_extents = Vector3( 1, 1, 1 )
+flag_disable_z = true
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+angular_velocity = 1.05
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 40.0
+angle_random = 1.0
+angle_curve = SubResource( 3 )
+scale = 0.5
+anim_offset = 1.0
+anim_offset_random = 1.0
+
+[sub_resource type="AnimatedTexture" id=5]
+flags = 4
+frames = 3
+frame_0/texture = ExtResource( 2 )
+frame_1/texture = ExtResource( 3 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 4 )
+frame_2/delay_sec = 0.0
+
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 8, 8 )
 
 [node name="Ball" type="RigidBody2D"]
-editor/display_folded = true
-position = Vector2( 544, 488 )
+position = Vector2( 555.607, 350.267 )
 mode = 2
 physics_material_override = SubResource( 1 )
 gravity_scale = 0.0
@@ -23,6 +58,12 @@ __meta__ = {
 "_edit_group_": true
 }
 
+[node name="Particles1" type="Particles2D" parent="."]
+amount = 1
+lifetime = 0.1
+process_material = SubResource( 4 )
+texture = SubResource( 5 )
+
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_left = -8.0
 margin_top = -8.0
@@ -30,4 +71,4 @@ margin_right = 8.0
 margin_bottom = 8.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
+shape = SubResource( 6 )
