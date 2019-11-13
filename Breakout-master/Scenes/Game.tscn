@@ -61,6 +61,7 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Paddle"]
 texture = ExtResource( 4 )
+offset = Vector2( 0, -20 )
 vframes = 3
 hframes = 2
 frame = 5
@@ -75,12 +76,14 @@ scale = Vector2( 0.626309, 0.643935 )
 texture = ExtResource( 5 )
 
 [node name="Wall" type="StaticBody2D" parent="."]
+editor/display_folded = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall"]
 position = Vector2( 1.50732, -1.50734 )
 polygon = PoolVector2Array( 0, 632, 0, 0, 1024, 0, 1024, 632, 1064, 632, 1064, -40, -48, -40, -48, 632 )
 
 [node name="Tiles" type="Node2D" parent="."]
+editor/display_folded = true
 
 [node name="Tile Row 1" type="Node2D" parent="Tiles"]
 
